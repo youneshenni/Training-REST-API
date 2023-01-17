@@ -8,6 +8,7 @@ let data = [
 
 const app = express();
 app.use(bodyParser.json());
+app.use("/static", express.static("frontend"));
 
 app.get("/", (req, res) => {
   res.status(200).json(data);
@@ -31,14 +32,14 @@ app.put("/:id", (req, res) => {
   const user = req.body;
   const index = data.findIndex((user) => user.id == id);
   data[index] = { ...user, id: id };
-  res.status(200).send("Updated");
+  res.status(201).send("Updated");
 });
 
 app.delete("/:id", (req, res) => {
   const id = req.params.id;
   const index = data.findIndex((user) => user.id == id);
   data.splice(index, 1);
-  res.status(200).send("Deleted");
+  res.status(204).send("Deleted");
 });
 
 app.use(express.static("frontend"));

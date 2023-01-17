@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+}
+#new {
+    align-self: flex-end;
+    width: fit-content;
+}
